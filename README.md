@@ -69,7 +69,8 @@ Limitations: Its size presents a significant computational challenge for local d
 To run my evaluation script and reproduce this research, follow these steps:
 
 Clone this repository:
-git clone [[your_repo_link](https://github.com/Aditi9505/automated-pedagogy-research-py)]
+git clone [(https://github.com/Aditi9505/automated-pedagogy-research-py)]
+
 cd [automated-pedagogy-research-py]
 
 Install dependencies: pip install -r requirements.txt
