@@ -1,64 +1,74 @@
-Evaluating Open Source Models for Student Competence Analysis
+ Evaluating Open Source Models for Student Competence Analysis
 
-This project explores and evaluates the use of open source AI models for assessing and enhancing student learning in Python. The goal is to move beyond simple code correctness and into the realm of conceptual understanding, identifying misconceptions, and fostering deeper learning.
+A Research Plan for Prompting High-Level Student Competence
+This document outlines a strategic research plan to evaluate and adapt open source AI models for a critical educational challenge: generating insightful prompts that assess a student's depth of understanding, rather than just their ability to produce correct code. My work uses Python learning as a case study to demonstrate this approach.
 
-📝 Research Plan: A Structured Approach
-My research plan is divided into two phases to ensure a thorough and practical evaluation.
+📝 Research Methodology
+My evaluation strategy is a two-phased process designed to be both comprehensive and practical.
 
-Phase 1: Model Identification & Criteria Setting
-I will begin by identifying a shortlist of open source LLMs from platforms like Hugging Face. The primary criteria for selection will be:
+Phase 1: Identification and Selection of Candidate Models
 
-Suitability for Code Analysis: Models explicitly trained on code (e.g., Code Llama, CodeBERT) are prioritized.
+I will begin with a targeted search on platforms like Hugging Face and GitHub for models specialized in code-related tasks. The key criteria for a promising candidate model will be:
 
-Open Source & Accessibility: The model must be freely available and have a clear license for academic use.
+Code-Centric Foundation: Prioritizing models pre-trained on large code corpora, such as Code Llama or CodeBERT. This ensures a robust understanding of code semantics and structure from the outset.
 
-Computational Footprint: I will favor models that are relatively small and can be run on consumer-grade hardware for practical, in-classroom deployment.
+Open-Source and Accessible: The model must be freely available for research and educational purposes to ensure it aligns with the FOSSEE mission.
 
-Phase 2: Hands-on Evaluation
-From the shortlist, I will perform a targeted evaluation using a custom Python script. This script will simulate the student-teacher interaction by feeding the model student-written code and then assessing the quality of the prompts it generates. This allows for a direct, qualitative assessment of the model's performance in our specific use case.
+Scalability: A practical model must be adaptable. I will consider models that can be run on consumer-grade hardware for localized deployment or scaled on cloud infrastructure for broader use.
 
-🧠 Reasoning and Critical Analysis
-What makes a model suitable for high-level competence analysis?
-A model is suitable for this task if it demonstrates semantic understanding and pedagogical reasoning. It must be able to:
+Phase 2: Targeted Hands-on Evaluation
 
-Identify Underlying Logic: Go beyond syntax errors and understand the student's logical intent and problem-solving strategy.
+I will select a model from my shortlist to perform a qualitative, hands-on evaluation using a Python script. This script will simulate the model's application by:
 
-Generate Socratic Prompts: Formulate questions that guide the student toward a solution without giving it away. For instance, instead of fixing a bug, the model should ask, "What happens if the input is an empty list?" to prompt critical thinking about edge cases.
+Feeding it student-written Python code snippets (e.g., incorrect syntax, inefficient logic, or conceptual errors).
 
-Detect Misconceptions: Recognize patterns of incorrect reasoning (e.g., confusing == with =) and address the underlying concept rather than just the immediate error.
+Generating a diverse set of prompts or feedback from the model.
 
-Maintain a Socratic Tone: The model's prompts must be encouraging and non-judgmental, fostering a safe learning environment.
+Manually assessing the quality, relevance, and pedagogical value of the output against a predefined rubric.
 
-How would you test whether a model generates meaningful prompts?
-I would employ a qualitative, rubric-based evaluation combined with a human-in-the-loop approach.
+This phase will move beyond theoretical discussions to provide concrete evidence of the model's capabilities and limitations.
 
-Create Test Scenarios: I would prepare a set of Python code snippets containing common student errors, misconceptions, and inefficient solutions.
+🧠 Critical Analysis and Rationale
+1. What makes a model suitable for high-level competence analysis?
+A model is suitable when it possesses strong semantic understanding and a capacity for pedagogical reasoning. It must be able to:
 
-Rubric Development: A scoring rubric would be created based on criteria such as:
+Discern Intent: Go beyond literal code to understand the student's problem-solving strategy. A good model identifies a flawed algorithm, not just a syntax error.
 
-Relevance (1-5): Does the prompt address the core issue in the code?
+Generate Socratic Prompts: Instead of providing a direct fix, it should formulate guiding questions that prompt the student toward self-discovery. For instance, a meaningful prompt might ask, "What happens if you try to sort a list of mixed data types?" rather than, "Your code fails because of a type error."
 
-Effectiveness (1-5): Does the prompt encourage the student to think critically instead of just applying a fix?
+Identify Misconceptions: It should be able to recognize and challenge a student's fundamental misunderstanding of a concept (e.g., mutable vs. immutable objects) and not just correct an isolated mistake.
 
-Clarity (1-5): Is the prompt easy for a student to understand?
+2. How would you test whether a model generates meaningful prompts?
+I would test the model's output using a human-in-the-loop validation process.
 
-Expert Validation: The model's generated prompts would be scored against this rubric by a Python expert. This process would provide both quantitative and qualitative data to determine the model's suitability and highlight its limitations.
+Rubric-Based Scoring: A qualitative rubric will score the model's prompts on three key criteria:
 
-Trade-offs: Accuracy, Interpretability, and Cost
-The ideal model balances these three factors. A massive, highly accurate LLM might give excellent prompts but be too slow or expensive for real-time educational feedback. A smaller model, while less accurate, could be deployed locally at a low cost, providing instant feedback. The most crucial trade-off is between accuracy and interpretability. While a model may be "accurate" in generating a correct prompt, if its logic is a "black box," it's hard for an instructor to trust it. For an educational tool, some level of interpretability (e.g., an explanation of why the prompt was generated) is a valuable feature.
+Relevance: Does the prompt directly address the conceptual issue in the code?
 
-Model Choice: Initial Evaluation with Code Llama
-For this task, I would choose to evaluate Code Llama due to its specific focus on code.
+Clarity: Is the language of the prompt simple and encouraging for a learner?
 
-Strengths: Its core strength is its understanding of code structure and semantics, making it uniquely suited for analyzing Python code. Being an open-source model developed by Meta, it provides a powerful, free foundation that can be fine-tuned.
+Depth: Does the prompt guide the student to a deeper understanding, or does it just offer a hint for the immediate solution?
 
-Limitations: Its primary limitation is its size and computational requirements. Deploying a larger variant for real-time analysis would likely require cloud infrastructure. Moreover, like many LLMs, it can "hallucinate," potentially providing incorrect or misleading feedback. A robust fine-tuning and validation process would be necessary to mitigate these risks and tailor its responses to be truly effective in an educational context.
+Comparative Analysis: The model's prompts will be directly compared against prompts written by an experienced human instructor for the same code. This comparison will provide a clear benchmark for the model's effectiveness and highlight areas where its "reasoning" falls short.
+
+3. What trade-offs might exist between accuracy, interpretability, and cost?
+The primary trade-off lies in choosing between a massive, highly accurate black-box model and a smaller, more interpretable one.
+
+Accuracy vs. Cost: A larger model like Code Llama 70B may offer superior reasoning but is expensive and slow to run. A smaller, fine-tuned model (e.g., Code Llama 7B) may be less accurate but is more feasible for real-time, low-cost deployment in a classroom setting.
+
+Accuracy vs. Interpretability: The "black-box" nature of large LLMs makes it difficult to understand why a specific prompt was generated. While such a model might be highly effective, its lack of interpretability could make it difficult for instructors to trust and integrate into their teaching. The optimal solution is one that provides a high degree of accuracy with a sufficient level of transparency.
+
+4. Why did you choose Code Llama, and what are its strengths and limitations?
+I chose Code Llama for initial evaluation because it is a powerful, open-source model specifically designed and trained for coding tasks.
+
+Strengths: Its extensive training on a large code corpus provides a strong foundation for analyzing student Python. Its open-source nature means it can be fine-tuned to fit the precise pedagogical needs of a specific curriculum without licensing costs, offering both power and flexibility.
+
+Limitations: Its size presents a significant computational challenge for local deployment, necessitating cloud infrastructure or a strategic use of smaller variants. Additionally, like all LLMs, Code Llama is susceptible to "hallucinations," which could lead to incorrect or misleading feedback for students. A rigorous, iterative validation process would be required to fine-tune the model's tone and ensure the accuracy of its prompts.
 
 🛠️ Reproducibility and Setup Instructions
 To run my evaluation script and reproduce this research, follow these steps:
 
 Clone this repository:
-
 git clone [[your_repo_link](https://github.com/Aditi9505/automated-pedagogy-research-py)]
 cd [automated-pedagogy-research-py]
 
